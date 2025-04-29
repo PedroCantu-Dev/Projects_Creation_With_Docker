@@ -1,12 +1,11 @@
 # Ignore all folders
-./*/
-
-# Allow files in the root directory
-!/*
+flutter_creation/*/
 
 # Optional: Ignore specific file types if needed
+.log
 # Example: Ignore log files
-*.log
+**/.log
 # Ignore .env file
-# .env
+.env
 # Ignore all 
+**/.env

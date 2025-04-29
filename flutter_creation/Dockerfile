@@ -1,6 +1,6 @@
 ## Change the base image to a specific version if needed
 ## Using the official Flutter image (latest stable version) as the base image
-FROM cirrusci/flutter:stable
+FROM petercantu/flutter
 
 ## Accept a project name as a build argument
 ARG PROJECT_NAME=default_flutter_project
