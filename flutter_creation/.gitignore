@@ -1,0 +1,9 @@
+# Ignore all folders
+*/
+
+# Allow files in the root directory
+!/*
+
+# Optional: Ignore specific file types if needed
+# Example: Ignore log files
+*.log
