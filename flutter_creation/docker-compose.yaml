@@ -1,0 +1,21 @@
+services:
+  flutter_app_creator:
+    build:
+      context: . 
+    volumes:
+      - ./${PROJECT_NAME}:/app/${PROJECT_NAME}
+    command: >
+      sh -c "if [ ! -d /app/${PROJECT_NAME}/lib ]; then
+                flutter create /tmp/${PROJECT_NAME} &&
+                cp -r /tmp/${PROJECT_NAME}/* /app/${PROJECT_NAME};
+              fi"
+    ## In case you want to run the app in a container, uncomment the following lines and comment the above command:
+    # ports:
+    #   - "8080:8080"
+    # command: >
+    #   sh -c "if [ ! -d /app/${PROJECT_NAME}/lib ]; then
+    #             flutter create /tmp/${PROJECT_NAME} &&
+    #             cp -r /tmp/${PROJECT_NAME}/* /app/${PROJECT_NAME};
+    #           fi &&
+    #           cd /app/${PROJECT_NAME} &&
+    #           flutter run -d web-server --web-hostname 0.0.0.0 --web-port 8080"
