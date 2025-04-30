@@ -7,6 +7,7 @@ services:
     command: >
       sh -c "mkdir -p /tmp/${PROJECT_NAME} &&
               if [ ! -f /app/${PROJECT_NAME}/manage.py ]; then
+                cp /app/requirements.txt /tmp/${PROJECT_NAME}/requirements.txt &&
                 django-admin startproject ${PROJECT_NAME} /tmp/${PROJECT_NAME} &&
                 cp -r /tmp/${PROJECT_NAME}/* /app/${PROJECT_NAME};
               fi"
