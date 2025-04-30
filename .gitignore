@@ -1,5 +1,5 @@
 # Ignore all folders
-**/*/
+/*/**/
 
 # Optional: Ignore specific file types if needed
 .log

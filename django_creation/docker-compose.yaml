@@ -1,0 +1,23 @@
+services:
+  django_app_creator:
+    build:
+      context: .
+    volumes:
+      - ./${PROJECT_NAME}:/app/${PROJECT_NAME}
+    command: >
+      sh -c "mkdir -p /tmp/${PROJECT_NAME} &&
+              if [ ! -f /app/${PROJECT_NAME}/manage.py ]; then
+                django-admin startproject ${PROJECT_NAME} /tmp/${PROJECT_NAME} &&
+                cp -r /tmp/${PROJECT_NAME}/* /app/${PROJECT_NAME};
+              fi"
+    ## In case you want to run the app in a container, uncomment the following lines and comment the above command:
+    # ports:
+    #   - "8000:8000"
+    # command: >
+    #   sh -c "mkdir -p /tmp/${PROJECT_NAME} &&
+    #           if [ ! -f /app/${PROJECT_NAME}/manage.py ]; then
+    #             django-admin startproject ${PROJECT_NAME} /tmp/${PROJECT_NAME} &&
+    #             cp -r /tmp/${PROJECT_NAME}/* /app/${PROJECT_NAME};
+    #           fi &&
+    #           python /app/${PROJECT_NAME}/manage.py migrate &&
+    #           python /app/${PROJECT_NAME}/manage.py runserver 0.0.0.0:8000"
