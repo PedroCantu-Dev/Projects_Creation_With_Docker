@@ -1,6 +1,6 @@
 ## Change the base image to a specific version if needed
 ## Using the official Flutter image (latest stable version) as the base image
-FROM petercantu/flutter
+FROM petercantu/flutter:3.29.3
 ##Para futuras referencias al principio use:
 ## FROM cirrusci/flutter:stable
 

@@ -1,0 +1,23 @@
+services:
+  dotnet_app_creator:
+    build:
+      context: .
+    volumes:
+      - ./${PROJECT_NAME}:/app/${PROJECT_NAME}
+    command: >
+      sh -c "mkdir -p /tmp/${PROJECT_NAME} &&
+        if [ ! -f /app/${PROJECT_NAME}/${PROJECT_NAME}.csproj ]; then
+        dotnet new webapi -o /tmp/${PROJECT_NAME} &&
+        cp -r /tmp/${PROJECT_NAME}/* /app/${PROJECT_NAME};
+        fi"
+    ## In case you want to run the app in a container, uncomment the following lines and comment the above command:
+    # ports:
+    #   - "5000:5000"
+    # command: >
+    #   sh -c "mkdir -p /tmp/${PROJECT_NAME} &&
+    #           if [ ! -f /app/${PROJECT_NAME}/${PROJECT_NAME}.csproj ]; then
+    #             dotnet new webapi -o /tmp/${PROJECT_NAME} &&
+    #             cp -r /tmp/${PROJECT_NAME}/* /app/${PROJECT_NAME};
+    #           fi &&
+    #           dotnet restore /app/${PROJECT_NAME} &&
+    #           dotnet run --project /app/${PROJECT_NAME} --urls=http://0.0.0.0:5000"
